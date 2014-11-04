@@ -84,6 +84,11 @@ OggSkeletonError oggskel_get_keypoint_offset (const OggSkeleton *skeleton,
                                               ogg_int64_t  time_ms, 
                                               ogg_int64_t *offset);
 
+OggSkeletonError oggskel_get_first_sample_num (const OggSkeleton *skeleton, ogg_int32_t serial_no, ogg_int64_t *first_sample_num);
+OggSkeletonError oggskel_get_first_sample_denum (const OggSkeleton *skeleton, ogg_int32_t serial_no, ogg_int64_t *first_sample_denum);
+OggSkeletonError oggskel_get_last_sample_num (const OggSkeleton *skeleton, ogg_int32_t serial_no, ogg_int64_t *last_sample_num);
+OggSkeletonError oggskel_get_last_sample_denum (const OggSkeleton *skeleton, ogg_int32_t serial_no, ogg_int64_t *last_sample_denum);
+
 #ifdef __cplusplus
 }
 #endif

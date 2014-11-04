@@ -678,3 +678,107 @@ oggskel_get_keypoint_offset (const OggSkeleton *skeleton,
   
   return SKELETON_ERR_OK;
 }
+
+OggSkeletonError 
+oggskel_get_first_sample_num (const OggSkeleton *skeleton, ogg_int32_t serial_no, ogg_int64_t *first_sample_num)
+{
+  OggSkeletonError ret = -1;
+  
+  if ((ret = getter_error_check (skeleton, first_sample_num)) < 0)
+    return ret;
+
+  if (skeleton->fishead.ver_maj < 4)
+  {
+    *first_sample_num = skeleton->fishead.first_sample_num;
+  }
+  else
+  {
+    Index *index = NULL;
+    if ((index = oggskel_vect_get_index (skeleton->track_vect, serial_no)) == NULL)
+    {
+      return SKELETON_ERR_BAD_SERIAL_NO;
+    }
+    
+    *first_sample_num = index->first_sample_num;
+  }
+  
+  return SKELETON_ERR_OK;
+}
+
+OggSkeletonError 
+oggskel_get_first_sample_denum (const OggSkeleton *skeleton, ogg_int32_t serial_no, ogg_int64_t *first_sample_denum)
+{
+  OggSkeletonError ret = -1;
+  
+  if ((ret = getter_error_check (skeleton, first_sample_denum)) < 0)
+    return ret;
+
+  if (skeleton->fishead.ver_maj < 4)
+  {
+    *first_sample_denum = skeleton->fishead.first_sample_denum;
+  }
+  else
+  {
+    Index *index = NULL;
+    if ((index = oggskel_vect_get_index (skeleton->track_vect, serial_no)) == NULL)
+    {
+      return SKELETON_ERR_BAD_SERIAL_NO;
+    }
+    
+    *first_sample_denum = index->ptime_denum;
+  }
+  
+  return SKELETON_ERR_OK;
+}
+
+OggSkeletonError 
+oggskel_get_last_sample_num (const OggSkeleton *skeleton, ogg_int32_t serial_no, ogg_int64_t *last_sample_num)
+{
+  OggSkeletonError ret = -1;
+  
+  if ((ret = getter_error_check (skeleton, last_sample_num)) < 0)
+    return ret;
+
+  if (skeleton->fishead.ver_maj < 4)
+  {
+    *last_sample_num = skeleton->fishead.last_sample_num;
+  }
+  else
+  {
+    Index *index = NULL;
+    if ((index = oggskel_vect_get_index (skeleton->track_vect, serial_no)) == NULL)
+    {
+      return SKELETON_ERR_BAD_SERIAL_NO;
+    }
+    
+    *last_sample_num = index->last_sample_num;
+  }
+  
+  return SKELETON_ERR_OK;
+}
+
+OggSkeletonError 
+oggskel_get_last_sample_denum (const OggSkeleton *skeleton, ogg_int32_t serial_no, ogg_int64_t *last_sample_denum)
+{
+  OggSkeletonError ret = -1;
+  
+  if ((ret = getter_error_check (skeleton, last_sample_denum)) < 0)
+    return ret;
+
+  if (skeleton->fishead.ver_maj < 4)
+  {
+    *last_sample_denum = skeleton->fishead.last_sample_denum;
+  }
+  else
+  {
+    Index *index = NULL;
+    if ((index = oggskel_vect_get_index (skeleton->track_vect, serial_no)) == NULL)
+    {
+      return SKELETON_ERR_BAD_SERIAL_NO;
+    }
+    
+    *last_sample_denum = index->ptime_denum;
+  }
+  
+  return SKELETON_ERR_OK;
+}
