@@ -621,15 +621,18 @@ oggskel_get_keypoint_offset (const OggSkeleton *skeleton,
     return -1;
   }
     
-  /* check whether the requested time is indexed at all! */
-  if 
-  (
-    (skeleton->fishead.last_sample_num < time_ms) 
-    || 
-    (time_ms < skeleton->fishead.first_sample_num)
-  )
+  if (skeleton->fishead.ver_maj == 3)
   {
-    return SKELETON_ERR_OUT_OF_RANGE;
+    /* check whether the requested time is indexed at all! */
+    if
+    (
+      (skeleton->fishead.last_sample_num < time_ms)
+      ||
+      (time_ms < skeleton->fishead.first_sample_num)
+    )
+    {
+      return SKELETON_ERR_OUT_OF_RANGE;
+    }
   }
   
   /* find the nearest keypoint that is before or at the given time_ms */
@@ -643,6 +646,20 @@ oggskel_get_keypoint_offset (const OggSkeleton *skeleton,
     {
       /* SKELETON_ERR_NO_INDEX */
       return SKELETON_ERR_BAD_SERIAL_NO;
+    }
+
+    if (skeleton->fishead.ver_maj == 4)
+    {
+      /* check whether the requested time is indexed at all! */
+      if
+      (
+        (index->last_sample_num < time_ms)
+        ||
+        (time_ms < index->first_sample_num)
+      )
+      {
+        return SKELETON_ERR_OUT_OF_RANGE;
+      }
     }
     
     kf = get_seek_keypoint (index, time_ms);
