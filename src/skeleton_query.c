@@ -37,6 +37,10 @@
 #include "skeleton_private.h"
 #include "skeleton_vector.h"
 
+#ifdef _MSC_VER
+#define inline __inline
+#endif
+
 static inline OggSkeletonError
 getter_error_check (const OggSkeleton *skeleton, void *input)
 {

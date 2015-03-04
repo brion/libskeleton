@@ -37,6 +37,10 @@
 #include "skeleton_macros.h"
 #include "skeleton_vector.h"
 
+#ifdef _MSC_VER
+#define inline __inline
+#endif
+
 static inline unsigned char* extract_uint16 (unsigned char *data, ogg_uint16_t* i)
 {
   if (data == NULL || i == NULL) return NULL;
