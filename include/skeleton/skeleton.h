@@ -37,7 +37,7 @@
  */
  
 #include <ogg/ogg.h>
-#include <skeleton/skeleton_constants.h>
+#include "skeleton_constants.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -48,7 +48,7 @@ extern "C" {
  */
 typedef struct _OggSkeleton OggSkeleton;
 
-#include <skeleton/skeleton_query.h>
+#include "skeleton_query.h"
 
 /** 
  * Creates an OggSkeleton handle.
