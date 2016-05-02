@@ -32,7 +32,7 @@
 #ifndef __OGG_SKELETON_PRIVATE__
 #define __OGG_SKELETON_PRIVATE__
 
-#include <skeleton/skeleton.h>
+#include "skeleton.h"
 
 typedef struct _FisHead {
   ogg_uint16_t  ver_maj;
