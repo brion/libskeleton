@@ -46,7 +46,7 @@ struct _TrackVect {
   TrackInfo   * tracks;
 };
 
-TrackVect* oggskel_vect_new ();
+TrackVect* oggskel_vect_new (void);
 
 void oggskel_vect_destroy (TrackVect *vect);
 

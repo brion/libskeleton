@@ -58,7 +58,7 @@ typedef struct _OggSkeleton OggSkeleton;
  * @return a new OggSkeleton handle
  * @retval NULL in case of memory allocation error
  */
-OggSkeleton* oggskel_new ();
+OggSkeleton* oggskel_new (void);
 
 /** 
  * Destroys an OggSkeleton handle.
@@ -66,7 +66,7 @@ OggSkeleton* oggskel_new ();
  * for the OggSkeleton handle while en/de-coding a skeleton stream.
  *  
  * @param skeleton the OggSkeleton handle to be destroyed
- * @return 
+ * @return a success or error value
  */
 OggSkeletonError oggskel_destroy (OggSkeleton* skeleton);
 
@@ -80,7 +80,7 @@ int oggskel_encode_add_stream (OggSkeleton* skeleton, ogg_int32_t serial_no);
  * 
  * @param skeleton OggSkeleton handle
  * @param op a skeleton packet
- * @return 
+ * @return a success or error value
  */
 int oggskel_decode_header (OggSkeleton* skeleton, const ogg_packet* op);
 
